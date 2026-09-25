@@ -1,0 +1,35 @@
+# Игнорируем абсолютно всё по умолчанию
+*
+
+# Исключения для конкретных файлов в корне
+!.gitignore
+!.zshrc
+!.zprofile
+!.p10k.zsh
+
+!*/
+!.config/
+
+# Neovim
+# Разрешаем отслеживать файлы внутри конфигурации Neovim
+!.config/nvim/**
+# Запрещаем тяжелые папки с кэшем/историей Neovim
+.config/nvim/undodir/
+
+# Wezterm
+!.config/wezterm/**
+
+# Starship
+!.config/starship.toml
+!.config/zsh/**
+#----------------------------------------------------------
+# Игнорировать системный мусор macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Игнорировать системный мусор Linux
+*~
+.fuse_hidden*
+.directory
