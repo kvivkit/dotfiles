@@ -7,8 +7,8 @@
 !.zprofile
 !.p10k.zsh
 
-!*/
-!.config/
+#!*/
+#!.config/
 
 # Neovim
 # Разрешаем отслеживать файлы внутри конфигурации Neovim

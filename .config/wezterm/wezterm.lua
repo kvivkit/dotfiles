@@ -21,6 +21,9 @@ local function get_keyboard_layout()
 end
 
 local config = wezterm.config_builder()
+-- Проверяем операционную систему
+local is_mac = wezterm.target_triple:find("apple-darwin") ~= nil
+local is_linux = wezterm.target_triple:find("linux") ~= nil
 
 -- Plugins
 local tabline = wezterm.plugin.require('https://github.com/michaelbrusegard/tabline.wez')
@@ -32,10 +35,20 @@ config.initial_cols = 120
 config.initial_rows = 28
 config.color_scheme = 'Tokyo Night Storm'
 -- or, changing the font size and color scheme.
-config.font = wezterm.font("JetBrains Mono")
-config.font_size = 18
 
--- Настройка полей (в пикселях)
+if is_mac then
+  config.font = wezterm.font("JetBrains Mono")
+  config.font_size = 18.0
+elseif is_linuxa then
+  config.font = wezterm.font("JetBrains Mono")
+  config.font_size = 14.0
+else
+  -- Резервный шрифт для других систем (например, Windows)
+  config.font = wezterm.font("Fira Code")
+  config.font_size = 13.0
+end
+
+  -- Настройка полей (в пикселях)
 config.window_padding = {
 	left = 5, -- отступ слева
 	right = 5, -- отступ справа

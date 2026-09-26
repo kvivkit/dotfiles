@@ -1,3 +1,60 @@
+# Определение ОС
+case "$OSTYPE" in
+  darwin*)
+    # Настройки только для macOS
+    export HOMEBREW_PREFIX="/opt/homebrew"
+    export EDITOR=/opt/homebrew/bin/nvim
+    export VISUAL=/opt/homebrew/bin/nvim
+    export HOMEBREW_NO_ENV_HINTS=1
+    export LDFLAGS="-L/opt/homebrew/opt/openssl@3.3/lib"
+    export PKG_CONFIG_PATH="/opt/homebrew/opt/libffi/lib/pkgconfig"
+    export GRPC_PYTHON_BUILD_SYSTEM_OPENSSL=1
+    export GRPC_PYTHON_BUILD_SYSTEM_ZLIB=1
+    export CPPFLAGS="-I/opt/homebrew/opt/openssl@3.3/include"
+    export CPPFLAGS="-I/opt/homebrew/Cellar/unixodbc/2.3.12/include:$CPPFLAGS" 
+    export LDFLAGS="-L/opt/homebrew/opt/libffi/lib:$LDFLAGS"
+    export LDFLAGS="-L/opt/homebrew/Cellar/unixodbc/2.3.12/lib:$LDFLAGS"
+    export PATH="/opt/homebrew/opt/openssl@3.3/bin:$PATH"
+    export PATH="/usr/local/opt/libpq/bin:$PATH"
+    export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+    export PATH="/Users/koks/.local/bin:$PATH"
+    export PATH="$PATH:/Users/koks/.spoof-dpi/bin"
+
+    alias ls='ls -G'
+    alias upgrade='brew upgrade'
+    alias runserver='uv run --env-file=.env python manage.py runserver'
+    alias makemigrations='uv run --env-file=.env python manage.py makemigrations'
+    alias migrate='uv run --env-file=.env python manage.py migrate'
+    alias celeryworker='uv run --env-file=.env celery -A libs.celery worker --pool=threads'
+
+    source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
+    # Use autosuggestion
+    source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+    ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
+
+    # Added by LM Studio CLI (lms)
+    export PATH="$PATH:/Users/koks/.lmstudio/bin"
+    # opencode
+    export PATH=/Users/koks/.opencode/bin:$PATH
+    # The following lines were added by compinstall
+    zstyle ':completion:*' completer _complete _ignored
+    zstyle :compinstall filename '/Users/koks/.zshrc'
+    ;;
+  linux*)
+    # Настройки только для Linux
+    alias ls='ls --color=auto'
+
+    source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+    ;;
+esac
+
+# Общие настройки для обеих систем
+alias ll='ls -l'
+export EDITOR='vim'
+
+
+
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -27,10 +84,6 @@ zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 
-# The following lines were added by compinstall
-zstyle ':completion:*' completer _complete _ignored
-zstyle :compinstall filename '/Users/koks/.zshrc'
-
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
@@ -38,23 +91,6 @@ compinit
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
 SAVEHIST=500
-
-export EDITOR=/opt/homebrew/bin/nvim
-export VISUAL=/opt/homebrew/bin/nvim
-export HOMEBREW_NO_ENV_HINTS=1
-export LDFLAGS="-L/opt/homebrew/opt/openssl@3.3/lib"
-export PKG_CONFIG_PATH="/opt/homebrew/opt/libffi/lib/pkgconfig"
-export GRPC_PYTHON_BUILD_SYSTEM_OPENSSL=1
-export GRPC_PYTHON_BUILD_SYSTEM_ZLIB=1
-export CPPFLAGS="-I/opt/homebrew/opt/openssl@3.3/include"
-export CPPFLAGS="-I/opt/homebrew/Cellar/unixodbc/2.3.12/include:$CPPFLAGS" 
-export LDFLAGS="-L/opt/homebrew/opt/libffi/lib:$LDFLAGS"
-export LDFLAGS="-L/opt/homebrew/Cellar/unixodbc/2.3.12/lib:$LDFLAGS"
-export PATH="/opt/homebrew/opt/openssl@3.3/bin:$PATH"
-export PATH="/usr/local/opt/libpq/bin:$PATH"
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
-export PATH="/Users/koks/.local/bin:$PATH"
-export PATH="$PATH:/Users/koks/.spoof-dpi/bin"
 
 WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider certain characters part of the word
 
@@ -76,42 +112,18 @@ alias free='free -m'                                            # Show sizes in 
 alias gitu='git add . && git commit && git push'
 alias vim='nvim'
 alias vi='nvim'
-alias upgrade='brew upgrade'
-alias runserver='uv run --env-file=.env python manage.py runserver'
-alias makemigrations='uv run --env-file=.env python manage.py makemigrations'
-alias migrate='uv run --env-file=.env python manage.py migrate'
-alias celeryworker='uv run --env-file=.env celery -A libs.celery worker --pool=threads'
-
 # Print some system information when the shell is first started
 # Print a greeting message when shell is started
 # echo $USER@$HOST $(uname -srm) #$(lsb_release -rs)
 
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 
-source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-
-# Use autosuggestion
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
-
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/koks/.lmstudio/bin"
-
-
-### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-export PATH="/Users/koks/.rd/bin:$PATH"
-### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
 
 export PYTHONIOENCODING=utf-8
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# opencode
-export PATH=/Users/koks/.opencode/bin:$PATH
 
 # It must be in the end of .zshrc
 # eval "$(starship init zsh)"
