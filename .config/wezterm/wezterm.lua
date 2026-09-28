@@ -42,6 +42,8 @@ if is_mac then
 elseif is_linuxa then
   config.font = wezterm.font("JetBrains Mono")
   config.font_size = 14.0
+
+  config.enable_wayland = false
 else
   -- Резервный шрифт для других систем (например, Windows)
   config.font = wezterm.font("Fira Code")
@@ -69,10 +71,10 @@ tabline.setup({
     theme = 'Tokyo Night Storm', -- Укажите название вашей темы
     icons_enabled = true,
   },
-  sections = {
+--    sections = {
     -- Вставляем функцию как элемент таблицы в секцию Z (правый край)
-    tabline_z = { 'domain', get_keyboard_layout },
-  }
+--    tabline_z = { 'domain', get_keyboard_layout },
+--  }
 })
 
 tabline.apply_to_config(config)
