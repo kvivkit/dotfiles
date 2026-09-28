@@ -39,25 +39,24 @@ config.window_padding = {
 	bottom = 5, -- отступ снизу
 }
 
--- Keyboard settings
-config.key_map_preference = "Physical"
-
 -- Tabbar config
 config.hide_tab_bar_if_only_one_tab = false
 config.use_fancy_tab_bar = false
-config.window_decorations = "RESIZE"
-config.native_macos_fullscreen_mode = true
 
 -- MacOS settings
 if is_mac then
+  config.key_map_preference = "Physical"
+  config.window_decorations = "RESIZE"
+  config.native_macos_fullscreen_mode = true
 	config.font = wezterm.font("JetBrains Mono")
 	config.font_size = 18.0
 -- Linux settings
 elseif is_linux then
+	config.enable_wayland = false
+  config.window_decorations = "RESIZE"
 	config.font = wezterm.font("JetBrains Mono")
 	config.font_size = 14.0
 
-	config.enable_wayland = false
 -- Unknown OS settings
 else
 	-- Резервный шрифт для других систем (например, Windows)

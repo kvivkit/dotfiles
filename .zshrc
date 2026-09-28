@@ -40,11 +40,19 @@ case "$OSTYPE" in
     # The following lines were added by compinstall
     zstyle ':completion:*' completer _complete _ignored
     zstyle :compinstall filename '/Users/koks/.zshrc'
+    
+    if command -v pyenv 1>/dev/null 2>&1; then
+        eval "$(pyenv init -)"
+    fi
+
+
     ;;
   linux*)
     # Настройки только для Linux
     alias ls='ls --color=auto'
-
+    source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+    ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+    ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
     source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
     ;;
 esac
@@ -52,8 +60,6 @@ esac
 # Общие настройки для обеих систем
 alias ll='ls -l'
 export EDITOR='vim'
-
-
 
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
@@ -78,6 +84,7 @@ setopt autocd                                                   # if only direct
 
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"         # Colored completion (different colors for dirs/files/etc)
+zstyle ':completion:*' completer _complete _ignored
 zstyle ':completion:*' rehash true                              # automatically find new executables in path 
 # Speed up completions
 zstyle ':completion:*' accept-exact '*(N)'
@@ -93,16 +100,6 @@ HISTSIZE=1000
 SAVEHIST=500
 
 WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider certain characters part of the word
-
-# rosetta terminal setup
-#if [ $(arch) = "i386" ]; then
-#    alias brew86="/usr/local/bin/brew"
-#    alias pyenv86="arch -x86_64 pyenv"
-#fi
-
-if command -v pyenv 1>/dev/null 2>&1; then
-    eval "$(pyenv init -)"
-fi
 
 ## Alias section
 alias dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
