@@ -1,3 +1,20 @@
+# Автоматическое уведомление WezTerm о смене директории (OSC 7)
+function update_wezterm_cwd() {
+    # Кодируем путь, заменяя пробелы и спецсимволы
+    local url_path=$((print -rD $PWD) | od -An -v -tx1 | tr -d ' \n' | sed 's/\(..\)/%\1/g')
+    printf "\e]7;file://%s%s\e\\" "$HOST" "$PWD"
+}
+
+# Добавляем функцию в хуки Zsh
+typeset -ag chpwd_functions
+if [[ ${chpwd_functions[(I)update_wezterm_cwd]} -eq 0 ]]; then
+  chpwd_functions+=(update_wezterm_cwd)
+fi
+
+# Запускаем один раз при открытии терминала
+update_wezterm_cwd
+
+
 # Определение ОС
 case "$OSTYPE" in
   darwin*)
@@ -49,17 +66,20 @@ case "$OSTYPE" in
     ;;
   linux*)
     # Настройки только для Linux
+    export EDITOR='vim'
+    
     alias ls='ls --color=auto'
     source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
     ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
     ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
     source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+
+    eval "$(mise activate zsh)"
     ;;
 esac
 
 # Общие настройки для обеих систем
 alias ll='ls -l'
-export EDITOR='vim'
 
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
@@ -121,6 +141,15 @@ alias vi='nvim'
 export PYTHONIOENCODING=utf-8
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" d
+	yazi "$@" --cwd-file="$tmp"
+	if d="$(cat -- "$tmp")" && [ -n "$d" ] && [ "$d" != "$PWD" ]; then
+		builtin cd -- "$d"
+	fi
+	rm -f -- "$tmp"
+}
 
 # It must be in the end of .zshrc
 # eval "$(starship init zsh)"

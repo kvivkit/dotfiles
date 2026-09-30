@@ -1,12 +1,12 @@
 local function map(mode, lhs, rhs, desc_or_opts)
-  local opts = {}
-  if type(desc_or_opts) == "string" then
-    opts = { desc = desc_or_opts }
-  elseif type(desc_or_opts) == "table" then
-    opts = desc_or_opts
-  end
-  opts.silent = opts.silent ~= false
-  vim.keymap.set(mode, lhs, rhs, opts)
+	local opts = {}
+	if type(desc_or_opts) == "string" then
+		opts = { desc = desc_or_opts }
+	elseif type(desc_or_opts) == "table" then
+		opts = desc_or_opts
+	end
+	opts.silent = opts.silent ~= false
+	vim.keymap.set(mode, lhs, rhs, opts)
 end
 
 vim.g.mapleader = " "
@@ -22,7 +22,12 @@ map("n", "<C-j>", "<C-w>j", "Move down")
 map("n", "<C-k>", "<C-w>k", "Move up")
 map("n", "<C-l>", "<C-w>l", "Move right")
 
+map("n", "<leader>e", ":Neotree toggle left<CR>", "Toggle Neo-tree")
+map("n", "<leader>f", ":Neotree focus<CR>", "Focus Neo-tree")
 
-map('n', '<leader>e', ':Neotree toggle left<CR>', 'Toggle Neo-tree')
-map('n', '<leader>f', ':Neotree focus<CR>', 'Focus Neo-tree')
-
+map(
+	"n",
+	"<F5>",
+	":w<CR>:vsplit term://uv run python %<CR>",
+	"Запустить Python в вертикальном окне"
+)
