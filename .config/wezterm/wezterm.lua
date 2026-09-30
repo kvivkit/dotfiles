@@ -39,21 +39,38 @@ config.window_padding = {
 	bottom = 5, -- отступ снизу
 }
 
+-- Keyboard settings
+-- config.key_map_preference = "Physical"
+
 -- Tabbar config
 config.hide_tab_bar_if_only_one_tab = false
 config.use_fancy_tab_bar = false
 
 -- MacOS settings
 if is_mac then
-  config.key_map_preference = "Physical"
-  config.window_decorations = "RESIZE"
-  config.native_macos_fullscreen_mode = true
+  	config.key_map_preference = "Physical"
+  	config.window_decorations = "RESIZE"
+	config.native_macos_fullscreen_mode = true
 	config.font = wezterm.font("JetBrains Mono")
-	config.font_size = 18.0
+	config.font_size = 20.0
+	config.keys = {
+		-- Разделить экран вертикально (новая панель справа) по Cmd + D
+		{
+			key = "d",
+			mods = "SUPER",
+			action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+		},
+		-- Разделить экран горизонтально (новая панель снизу) по Cmd + Shift + D
+		{
+			key = "d",
+			mods = "SUPER|SHIFT",
+			action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
+		},
+		}
 -- Linux settings
 elseif is_linux then
 	config.enable_wayland = false
-  config.window_decorations = "RESIZE"
+	config.window_decorations = "RESIZE"
 	config.font = wezterm.font("JetBrains Mono")
 	config.font_size = 14.0
 
