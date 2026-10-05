@@ -21,13 +21,3 @@ map("n", "<C-h>", "<C-w>h", "Move left")
 map("n", "<C-j>", "<C-w>j", "Move down")
 map("n", "<C-k>", "<C-w>k", "Move up")
 map("n", "<C-l>", "<C-w>l", "Move right")
-
-map("n", "<leader>e", ":Neotree toggle left<CR>", "Toggle Neo-tree")
-map("n", "<leader>f", ":Neotree focus<CR>", "Focus Neo-tree")
-
-map(
-	"n",
-	"<F5>",
-	":w<CR>:vsplit term://uv run python %<CR>",
-	"Запустить Python в вертикальном окне"
-)

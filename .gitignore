@@ -33,3 +33,5 @@
 *~
 .fuse_hidden*
 .directory
+
+.zshprofile

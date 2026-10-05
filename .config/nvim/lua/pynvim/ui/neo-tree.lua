@@ -24,19 +24,10 @@ return {
 				},
 			},
 			source_selector = {
-				winbar = true, -- Добавляет строку статуса наверх (winbar)
-				statusline = false, -- Отключает нижнюю строку статуса плагина (если не нужна)
-				show_scrolled_off_parent_node = true, -- Показывает родительский узел при прокрутке
-				sources = { -- Настройка отображения источников
-					{ source = "filesystem" },
-					{ source = "buffers" },
-					{ source = "git_status" },
-				},
-				content_layout = "center", -- Центрирует текст (может быть "left", "right", "center")
-				tabs_layout = "equal", -- Как распределяются вкладки ("equal" или "active")
+				winbar = true,
+				statusline = false,
 			},
 		})
-
 		-- АВТООТКРЫТИЕ ПРИ СТАРТЕ
 		vim.api.nvim_create_autocmd("VimEnter", {
 			callback = function()

@@ -1,4 +1,4 @@
 return {
-	require('pynvim.tools.telescope'),
-	require('pynvim.tools.wezterm'),
+	require("pynvim.tools.telescope"),
+	require("pynvim.tools.wezterm"),
 }

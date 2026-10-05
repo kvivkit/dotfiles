@@ -26,9 +26,9 @@ local is_mac = wezterm.target_triple:find("apple") ~= nil
 local is_linux = wezterm.target_triple:find("linux") ~= nil
 
 -- COMMON SETTINGS
--- The initial geometry for new windows:
 config.initial_cols = 120
 config.initial_rows = 28
+config.harfbuzz_features = { "calt=0" }
 config.color_scheme = "Tokyo Night Storm"
 
 -- Настройка полей (в пикселях)
@@ -48,8 +48,8 @@ config.use_fancy_tab_bar = false
 
 -- MacOS settings
 if is_mac then
-  	config.key_map_preference = "Physical"
-  	config.window_decorations = "RESIZE"
+	config.key_map_preference = "Physical"
+	config.window_decorations = "RESIZE"
 	config.native_macos_fullscreen_mode = true
 	config.font = wezterm.font("JetBrains Mono")
 	config.font_size = 20.0
@@ -66,7 +66,7 @@ if is_mac then
 			mods = "SUPER|SHIFT",
 			action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
 		},
-		}
+	}
 -- Linux settings
 elseif is_linux then
 	config.enable_wayland = false
