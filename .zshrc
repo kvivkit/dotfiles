@@ -52,8 +52,6 @@ case "$OSTYPE" in
 
     # Added by LM Studio CLI (lms)
     export PATH="$PATH:/Users/koks/.lmstudio/bin"
-    # opencode
-    export PATH=/Users/koks/.opencode/bin:$PATH
     # The following lines were added by compinstall
     zstyle ':completion:*' completer _complete _ignored
     zstyle :compinstall filename '/Users/koks/.zshrc'
@@ -153,3 +151,6 @@ function y() {
 
 # It must be in the end of .zshrc
 # eval "$(starship init zsh)"
+
+# opencode
+export PATH=/Users/koks/.opencode/bin:$PATH
