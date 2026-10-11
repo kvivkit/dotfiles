@@ -60,8 +60,27 @@ case "$OSTYPE" in
         eval "$(pyenv init -)"
     fi
 
+    eval "$(mise activate zsh)"
+    
+    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+    function y() {
+      local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" d
+      yazi "$@" --cwd-file="$tmp"
+      if d="$(cat -- "$tmp")" && [ -n "$d" ] && [ "$d" != "$PWD" ]; then
+        builtin cd -- "$d"
+      fi
+      rm -f -- "$tmp"
+    }
+
+    # It must be in the end of .zshrc
+    # eval "$(starship init zsh)"
+
+    # opencode
+    export PATH=/Users/koks/.opencode/bin:$PATH
 
     ;;
+
   linux*)
     # Настройки только для Linux
     export EDITOR='vim'
@@ -72,7 +91,6 @@ case "$OSTYPE" in
     ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
     source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
-    eval "$(mise activate zsh)"
     ;;
 esac
 
@@ -138,19 +156,3 @@ alias vi='nvim'
 
 export PYTHONIOENCODING=utf-8
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" d
-	yazi "$@" --cwd-file="$tmp"
-	if d="$(cat -- "$tmp")" && [ -n "$d" ] && [ "$d" != "$PWD" ]; then
-		builtin cd -- "$d"
-	fi
-	rm -f -- "$tmp"
-}
-
-# It must be in the end of .zshrc
-# eval "$(starship init zsh)"
-
-# opencode
-export PATH=/Users/koks/.opencode/bin:$PATH
