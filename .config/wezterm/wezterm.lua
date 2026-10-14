@@ -87,7 +87,7 @@ local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabl
 
 local tabline_config = {
 	options = {
-		theme = "Tokyo Night Storm", -- Укажите название вашей темы
+		theme = "Tokyo Night", -- Укажите название вашей темы
 		icons_enabled = true,
 	},
 }

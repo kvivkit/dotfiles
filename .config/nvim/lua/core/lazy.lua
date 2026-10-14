@@ -17,8 +17,9 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Setup lazy.nvim
 require("lazy").setup({
-	require("core.snacks"),
 	require("pynvim.ui"),
+	require("core.snacks"),
+	require("pynvim.editor"),
 	require("pynvim.tools"),
 	require("pynvim.coding"),
 	require("pynvim.git"),
