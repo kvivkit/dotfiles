@@ -46,3 +46,13 @@ vim.api.nvim_create_autocmd("BufEnter", {
 		vim.opt.formatoptions:remove({ "c", "r", "o" })
 	end,
 })
+
+local macos_issw_group = vim.api.nvim_create_augroup("MacosIsswSelect", { clear = true })
+
+vim.api.nvim_create_autocmd({ "InsertLeave", "CmdlineLeave" }, {
+	group = macos_issw_group,
+	callback = function()
+		-- Подставьте сюда ID вашей английской раскладки, полученный из команды issw
+		vim.fn.jobstart({ "issw", "com.apple.keylayout.ABC" })
+	end,
+})

@@ -21,6 +21,3 @@ map("n", "<C-h>", "<C-w>h", "Move left")
 map("n", "<C-j>", "<C-w>j", "Move down")
 map("n", "<C-k>", "<C-w>k", "Move up")
 map("n", "<C-l>", "<C-w>l", "Move right")
-
-map("i", "jk", "<Esc>", { desc = "Выход в нормальный режим" })
-map("i", "kj", "<Esc>", { desc = "Выход в нормальный режим" })
