@@ -9,7 +9,7 @@ return {
 		-- refer to the configuration section below
 		bufdelete = { enabled = true },
 		bigfile = { enabled = true },
-		dashboard = { enabled = false },
+		dashboard = { enabled = true },
 		explorer = { enabled = true },
 		indent = { enabled = false },
 		input = { enabled = false },
