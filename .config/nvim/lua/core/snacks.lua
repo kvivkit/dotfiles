@@ -3,40 +3,44 @@ return {
 	priority = 1000,
 	lazy = false,
 	---@type snacks.Config
-	opts = {
-		-- your configuration comes here
-		-- or leave it empty to use the default settings
-		-- refer to the configuration section below
-		bufdelete = { enabled = true },
-		bigfile = { enabled = true },
-		dashboard = { enabled = true },
-		explorer = { enabled = true },
-		indent = { enabled = false },
-		input = { enabled = false },
-		notifier = { enabled = false },
-		quickfile = { enabled = false },
-		scope = { enabled = false },
-		scroll = { enabled = false },
-		statuscolumn = { enabled = false },
-		words = { enabled = false },
+	opts = function()
+		local base_opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+			bigfile = { enabled = true },
+      explorer = { enabled = true },
+      image = { enabled = false },
+			indent = { enabled = true },
+			input = { enabled = true },
+			notifier = { enabled = true },
+			quickfile = { enabled = true },
+			scope = { enabled = false },
+			scroll = { enabled = true },
+			statuscolumn = { enabled = false },
+			words = { enabled = true },
+		}
 
-		picker = {
-			enabled = true,
-			sources = {
-				explorer = {
-					hidden = true,
-					ignored = true,
-					exclude = {
-						--".env",
-						".git",
-						".venv",
-						".*cache",
-					},
-				},
+		local dashboard = require("plugins.ui.snacks-dashboard")
+		local picker = require("plugins.ui.snacks-picker")
+
+		-- Объединяем все настройки в один итоговый объект opts
+		return vim.tbl_deep_extend("force", base_opts, {
+			dashboard = dashboard,
+			picker = picker,
+		})
+	end,
+
+	keys = function()
+		-- Горячие клавиши также можно вынести или оставить здесь
+		return {
+			{
+				"<leader>e",
+				function()
+					Snacks.picker.explorer()
+				end,
+				desc = "Toggle File Explorer",
 			},
-		},
-	},
-	vim.keymap.set("n", "<leader>e", function()
-		Snacks.picker.explorer()
-	end, { desc = "File Explorer" }),
+		}
+	end,
 }

@@ -12,7 +12,7 @@ return {
 					statusline = { "neo-tree" },
 					winbar = {},
 				},
-				ignore_focus = {},
+				ignore_focus = { "neo-tree" },
 				always_divide_middle = true,
 				always_show_tabline = true,
 				globalstatus = true,

@@ -14,19 +14,19 @@ return {
 				always_show_bufferline = true,
 				offsets = {
 					{
-						filetype = "snacks_layout_box",
+						filetype = "neo-tree",
 						text = "File explorer", -- Текст, который будет виден сверху
 						text_align = "center", -- Выравнивание текста ("left", "center", "right")
 						highlight = "Directory",
 						separator = true, -- Вертикальный разделитель между смещением и вкладками
 					},
 				},
-				close_command = function(n)
-					Snacks.bufdelete(n)
-				end,
-				right_mouse_command = function(n)
-					Snacks.bufdelete(n)
-				end,
+				--close_command = function(n)
+					--Snacks.bufdelete(n)
+				--end,
+				--right_mouse_command = function(n)
+					--Snacks.bufdelete(n)
+				--end,
 			},
 		})
 	end,

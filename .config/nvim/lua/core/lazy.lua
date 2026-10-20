@@ -18,11 +18,11 @@ vim.opt.rtp:prepend(lazypath)
 -- Setup lazy.nvim
 require("lazy").setup({
 	require("plugins.ui"),
-	require("core.snacks"),
+	--require("core.snacks"),
 	require("plugins.editor"),
-	require("plugins.tools"),
-	require("plugins.coding"),
-	require("plugins.git"),
+	--require("plugins.tools"),
+	--require("plugins.coding"),
+	--require("plugins.git"),
 }, {
 	-- Configure any other settings here. See the documentation for more details.
 	-- automatically check for plugin updates
