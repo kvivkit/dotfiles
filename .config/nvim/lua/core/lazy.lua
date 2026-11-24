@@ -20,8 +20,10 @@ require("lazy").setup({
 	require("plugins.ui"),
 	--require("core.snacks"),
 	require("plugins.editor"),
-	--require("plugins.tools"),
-	--require("plugins.coding"),
+	require("plugins.tools"),
+	require("plugins.coding"),
+	require("plugins.debug"),
+	require("plugins.view"),
 	--require("plugins.git"),
 }, {
 	-- Configure any other settings here. See the documentation for more details.

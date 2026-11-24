@@ -1,3 +1,5 @@
+vim.g.loaded_python3_provider = 0
+
 local opt = vim.opt
 
 -- Отступы и табуляция

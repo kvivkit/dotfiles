@@ -14,7 +14,7 @@ return {
 				always_show_bufferline = true,
 				offsets = {
 					{
-						filetype = "neo-tree",
+						filetype = "neo-tree", --"snacks_layout_box"
 						text = "File explorer", -- Текст, который будет виден сверху
 						text_align = "center", -- Выравнивание текста ("left", "center", "right")
 						highlight = "Directory",
@@ -22,10 +22,10 @@ return {
 					},
 				},
 				--close_command = function(n)
-					--Snacks.bufdelete(n)
+				--Snacks.bufdelete(n)
 				--end,
 				--right_mouse_command = function(n)
-					--Snacks.bufdelete(n)
+				--Snacks.bufdelete(n)
 				--end,
 			},
 		})
